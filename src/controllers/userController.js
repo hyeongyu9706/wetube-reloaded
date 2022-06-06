@@ -35,6 +35,7 @@ export const getLogin = (req, res) =>
     res.render('login', {
         pageTitle: 'Login',
     });
+
 export const postLogin = async (req, res) => {
     const { username, password } = req.body;
     const pageTitle = 'Login';
@@ -55,6 +56,8 @@ export const postLogin = async (req, res) => {
         });
     }
     console.log('LOG USER IN!');
+    req.session.loggedIn = true;
+    req.session.user = user;
     return res.redirect('/');
 };
 export const editUser = (req, res) => res.send('Edit User');
